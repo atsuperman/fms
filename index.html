@@ -1,9 +1,9 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern UI with Live Clock and Weather</title>
+<title>Modern UI with Live Clock</title>
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -31,9 +31,6 @@
         margin: 10px 0;
         font-size: 1.5em;
     }
-    .weather {
-        font-size: 1.2em;
-    }
     .blinking-colon {
         animation: blink 1s step-start infinite;
     }
@@ -49,9 +46,6 @@
         <div id="day"></div>
         <div id="time12"></div>
         <div id="time24"></div>
-    </div>
-    <div class="weather" id="weather">
-        Loading weather...
     </div>
 </div>
 
@@ -79,22 +73,6 @@
 
     setInterval(updateDateTime, 1000);
     updateDateTime(); // Initial call to display immediately
-
-    async function updateWeather() {
-        try {
-            const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Tamil%20Nadu,IN&appid=YOUR_API_KEY&units=metric');
-            const data = await response.json();
-            const temperature = data.main.temp;
-            const description = data.weather[0].description;
-
-            document.getElementById('weather').innerHTML = `Current Weather in Tamil Nadu: ${temperature}°C, ${description}`;
-        } catch (error) {
-            document.getElementById('weather').innerHTML = 'Unable to load weather data.';
-        }
-    }
-
-    setInterval(updateWeather, 300000); // Update every 5 minutes
-    updateWeather(); // Initial call to display immediately
 </script>
 </body>
 </html>
