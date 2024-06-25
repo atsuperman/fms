@@ -7,13 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Thaalam.fm Music Controller</h1>
-    <iframe id="music-frame" src="https://thaalam.fm/" frameborder="0"></iframe>
-    <div class="controls">
-        <button id="play-btn">Play</button>
-        <button id="pause-btn">Pause</button>
-        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1">
+    <h1>Music Controller</h1>
+    
+    <div class="iframe-container">
+        <h2>Thaalam.fm</h2>
+        <iframe id="music-frame-1" src="https://thaalam.fm/" frameborder="0"></iframe>
+        <div class="controls">
+            <button class="play-btn" data-frame="music-frame-1">Play</button>
+            <button class="pause-btn" data-frame="music-frame-1">Pause</button>
+            <input type="range" class="volume-slider" data-frame="music-frame-1" min="0" max="1" step="0.1" value="1">
+        </div>
     </div>
+
+    <div class="iframe-container">
+        <h2>Tamil894fm.com</h2>
+        <iframe id="music-frame-2" src="https://tamil894fm.com/" frameborder="0"></iframe>
+        <div class="controls">
+            <button class="play-btn" data-frame="music-frame-2">Play</button>
+            <button class="pause-btn" data-frame="music-frame-2">Pause</button>
+            <input type="range" class="volume-slider" data-frame="music-frame-2" min="0" max="1" step="0.1" value="1">
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
