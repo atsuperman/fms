@@ -13,14 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     musicSelector.addEventListener('change', (event) => {
         const selectedFrameId = event.target.value;
-        const selectedOptionText = event.target.options[event.target.selectedIndex].text;
-
-        // Update the document title
-        if (selectedOptionText !== "Select...") {
-            document.title = selectedOptionText;
-        } else {
-            document.title = "Music Controller Grid";
-        }
 
         iframeContainers.forEach(container => {
             const iframe = container.querySelector('iframe');
