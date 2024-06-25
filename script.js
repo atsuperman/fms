@@ -1,20 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const iframe = document.getElementById('music-frame');
-    const playBtn = document.getElementById('play-btn');
-    const pauseBtn = document.getElementById('pause-btn');
-    const volumeSlider = document.getElementById('volume-slider');
+    const playButtons = document.querySelectorAll('.play-btn');
+    const pauseButtons = document.querySelectorAll('.pause-btn');
+    const volumeSliders = document.querySelectorAll('.volume-slider');
 
-    function sendCommand(command) {
-        iframe.contentWindow.postMessage(command, 'https://thaalam.fm');
+    function sendCommand(frameId, command) {
+        const iframe = document.getElementById(frameId);
+        iframe.contentWindow.postMessage(command, '*');
     }
 
-    playBtn.addEventListener('click', () => sendCommand('play'));
-    pauseBtn.addEventListener('click', () => sendCommand('pause'));
-    volumeSlider.addEventListener('input', () => sendCommand(`volume:${volumeSlider.value}`));
+    playButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const frameId = button.getAttribute('data-frame');
+            sendCommand(frameId, 'play');
+        });
+    });
+
+    pauseButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const frameId = button.getAttribute('data-frame');
+            sendCommand(frameId, 'pause');
+        });
+    });
+
+    volumeSliders.forEach(slider => {
+        slider.addEventListener('input', () => {
+            const frameId = slider.getAttribute('data-frame');
+            sendCommand(frameId, `volume:${slider.value}`);
+        });
+    });
 
     window.addEventListener('message', (event) => {
-        if (event.origin !== 'https://thaalam.fm') return;
+        if (!['https://thaalam.fm', 'https://tamil894fm.com'].includes(event.origin)) return;
 
-        // Handle incoming messages from the iframe if needed
+        // Handle incoming messages from the iframes if needed
     });
 });
