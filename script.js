@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const frameId = button.getAttribute('data-frame');
             const iframe = document.getElementById(frameId);
-            iframe.src = iframe.src; // Reload the iframe content
+            iframe.src = iframe.getAttribute('data-src'); // Reload the iframe content
         });
     });
 
@@ -15,10 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedFrameId = event.target.value;
 
         iframeContainers.forEach(container => {
+            const iframe = container.querySelector('iframe');
             if (container.id === `container-${selectedFrameId}`) {
                 container.style.display = 'flex';
+                iframe.src = iframe.getAttribute('data-src'); // Set the src to load the iframe
             } else {
                 container.style.display = 'none';
+                iframe.src = ''; // Remove the src to stop the iframe
             }
         });
     });
