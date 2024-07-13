@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const refreshButtons = document.querySelectorAll('.refresh-btn');
+    const visitButtons = document.querySelectorAll('.visit-btn');
     const musicSelector = document.getElementById('music-selector');
     const iframeContainers = document.querySelectorAll('.grid-item');
 
@@ -8,6 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const frameId = button.getAttribute('data-frame');
             const iframe = document.getElementById(frameId);
             iframe.src = iframe.getAttribute('data-src'); // Reload the iframe content
+        });
+    });
+
+    visitButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const frameId = button.getAttribute('data-frame');
+            const iframe = document.getElementById(frameId);
+            const url = iframe.getAttribute('data-src');
+            window.open(url, '_blank'); // Open the URL in a new tab
         });
     });
 
