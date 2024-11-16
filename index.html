@@ -65,11 +65,18 @@
             <iframe id="music-frame-5" data-src="https://cmr24.net/#"
 frameborder="0"></iframe>
         </div>
-        <div class="grid-item" id="container-music-frame-6">
-            <button class="refresh-btn" data-frame="music-frame-6">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-6">Visit</button>
-            <iframe id="music-frame-6" data-src="https://audio1.syok.my/raaga/
-"frameborder="0"></iframe>
+        <div class="grid-item" id="container-music-frame-2">
+            <div class="button-group">
+                <button onclick="refreshIframe('music-frame-2')">Refresh</button>
+                <button onclick="visitIframeSite('https://audio1.syok.my/raaga/')">Visit</button>
+            </div>
+            <iframe 
+                id="music-frame-2" 
+                src="https://audio1.syok.my/raaga/" 
+                frameborder="0" 
+                allowfullscreen 
+                sandbox="allow-same-origin allow-scripts allow-popups">
+            </iframe>
         </div>
         <div class="grid-item" id="container-music-frame-7">
             <button class="refresh-btn" data-frame="music-frame-7">Refresh</button>
