@@ -1,131 +1,169 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Controller Grid</title>
-    <link rel="stylesheet" href="styles.css">
+    <title> 🎶 MUSIC TREAT 🎶 </title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            border-bottom: 5px solid #0056b3;
+        }
+        .url-selector {
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-bottom: 3px solid #ddd;
+            animation: borderGlow 2s infinite;
+        }
+        select {
+            padding: 10px;
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .iframe-container {
+            flex-grow: 1;
+            position: relative;
+            background: linear-gradient(to bottom, #007bff, #0056b3);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: white;
+            transform: scale(0.95);
+            transition: transform 0.5s ease-in-out;
+        }
+        iframe.loaded {
+            transform: scale(1);
+        }
+        .footer {
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            font-size: 1rem;
+            border-top: 5px solid #0056b3;
+            animation: borderGlow 2s infinite;
+        }
+        @keyframes borderGlow {
+            0%, 100% {
+                border-color: #ddd;
+            }
+            50% {
+                border-color: #007bff;
+            }
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Music Controller Grid</h1>
-    <div class="selector-container">
-        <label for="music-selector">Choose a station:</label>
-        <select id="music-selector">
-            <option value="">Select...</option>
-            <option value="music-frame-1">Thaalam FM</option>
-            <option value="music-frame-2">89.4 Tamil FM</option>
-            <option value="music-frame-9">THAALAM FM ch</option>
-            <option value="music-frame-3">Shakthi FM</option>
-            <option value="music-frame-4">SUPER RADIO</option>
-            <option value="music-frame-5">CMR TAMIL HD</option>
-            <option value="music-frame-6">THR RAAGA</option>
-            <option value="music-frame-7">OLI 96.8 SG</option>
-            <option value="music-frame-8">SOORIYAN FM LK</option>
-            <option value="music-frame-10">RADIO MANNAR</option>
-<option value="music-frame-11">HIT967[uaeVPN]</option>
-<option value="music-frame-12">Tamizh Fm SL </option>
-<option value="music-frame-13">DUBAI92[uaeVPN]</option>
-<option value="music-frame-14">CITY1016[uaeVPN]</option>
-<option value="music-frame-15">VIRGIN RADIO [uaeVPN]</option>
-<option value="music-frame-16">MIRCHI1024[uaeVPN]</option>
-       </select>
-    </div>
-    <div class="grid-container">
-        <div class="grid-item" id="container-music-frame-1">
-            <button class="refresh-btn" data-frame="music-frame-1">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-1">Visit</button>
-            <iframe id="music-frame-1" data-src="https://thaalam.fm/" frameborder="0"></iframe>
+    <div class="container">
+        <div class="header">🎵</div>
+        <div class="url-selector">
+            <select id="urlSelect">
+<option value="https://atsuperman.github.io/In/">SUPER RADIO</option>
+                <option value="https://thaalam.fm/">THAALAM FM ca</option>
+                <option value="https://tamil894fm.com/">TAMIL 894 uae</option>
+<option value="https://thaalam.ch/">THAALAM FM ch</option>
+<option value="https://shakthifm.com/">SHAKTHI FM sl</option>
+<option value="https://tamilfm.online/program/late-night-nanban/">TAMIZH FM sl</option>
+<option value="https://cmr24.net/#">CMR TAMIL HD ca</option>
+<option value="https://audio1.syok.my/raaga/">THR RAAGA my</option>
+<option value="https://www.melisten.sg/radio/oli-968">OLI 968 sg</option>
+<option value="https://www.sooriyanfm.lk/listenlive.php">SOORIYAN FM sl</option>
+<option value="https://www.hit967.ae/player/">HIT 967 uae [vpn]</option>
+<option value="https://www.dubai92.com/player/">DUBAI 92 uae [vpn]</option>
+<option value="https://www.city1016.ae/player/">CITY 1016 uae [vpn]</option>
+<option value="https://www.virginradiodubai.com/listen/">VIRGIN RADIO uae [vpn]</option>
+<option value="https://mirchi.in/radio/dubai">MIRCHI 1024 uae [vpn]</option>
+
+            </select>
+            <button id="refreshButton">Refresh</button>
+            <button id="visitButton">Visit</button>
         </div>
-        <div class="grid-item" id="container-music-frame-2">
-            <button class="refresh-btn" data-frame="music-frame-2">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-2">Visit</button>
-            <iframe id="music-frame-2" data-src="https://tamil894fm.com/" frameborder="0"></iframe>
+        <div class="iframe-container">
+            <iframe id="pageFrame" src=""></iframe>
         </div>
-        <div class="grid-item" id="container-music-frame-9">
-            <button class="refresh-btn" data-frame="music-frame-9">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-9">Visit</button>
-            <iframe id="music-frame-9" data-src="https://thaalam.ch/" frameborder="0"></iframe>
-        </div>
-        <div class="grid-item" id="container-music-frame-3">
-            <button class="refresh-btn" data-frame="music-frame-3">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-3">Visit</button>
-            <iframe id="music-frame-3" data-src="https://shakthifm.com/" frameborder="0"></iframe>
-        </div>
-        <div class="grid-item" id="container-music-frame-4">
-            <button class="refresh-btn" data-frame="music-frame-4">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-4">Visit</button>
-            <iframe id="music-frame-4" data-src="https://atsuperman.github.io/In/" frameborder="0"></iframe>
-        </div>
-        <div class="grid-item" id="container-music-frame-5">
-            <button class="refresh-btn" data-frame="music-frame-5">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-5">Visit</button>
-            <iframe id="music-frame-5" data-src="https://cmr24.net/#"
-frameborder="0"></iframe>
-        </div>
-        <div class="grid-item" id="container-music-frame-2">
-            <div class="button-group">
-                <button onclick="refreshIframe('music-frame-2')">Refresh</button>
-                <button onclick="visitIframeSite('https://audio1.syok.my/raaga/')">Visit</button>
-            </div>
-            <iframe 
-                id="music-frame-2" 
-                src="https://audio1.syok.my/raaga/" 
-                frameborder="0" 
-                allowfullscreen 
-                sandbox="allow-same-origin allow-scripts allow-popups">
-            </iframe>
-        </div>
-        <div class="grid-item" id="container-music-frame-7">
-            <button class="refresh-btn" data-frame="music-frame-7">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-7">Visit</button>
-            <iframe id="music-frame-7" data-src="https://www.melisten.sg/radio/oli-968" frameborder="0"></iframe>
-        </div>
-        <div class="grid-item" id="container-music-frame-8">
-            <button class="refresh-btn" data-frame="music-frame-8">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-8">Visit</button>
-            <iframe id="music-frame-8" data-src="https://www.sooriyanfm.lk/listenlive.php" frameborder="0"></iframe>
-        </div>
-        <div class="grid-item" id="container-music-frame-10">
-            <button class="refresh-btn" data-frame="music-frame-10">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-10">Visit</button>
-            <iframe id="music-frame-10" data-src="https://radiomannar.live/" frameborder="0"></iframe>
-        </div>
-<div class="grid-item" id="container-music-frame-11">
-            <button class="refresh-btn" data-frame="music-frame-11">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-11">Visit</button>
-            <iframe id="music-frame-11" data-src="https://www.hit967.ae/player/" frameborder="0"></iframe>
-        </div>
-<div class="grid-item" id="container-music-frame-12">
-            <button class="refresh-btn" data-frame="music-frame-12">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-12">Visit</button>
-            <iframe id="music-frame-12" data-src="https://tamilfm.online/program/late-night-nanban/" frameborder="0"></iframe>
-        </div>
-<div class="grid-item" id="container-music-frame-13">
-            <button class="refresh-btn" data-frame="music-frame-13">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-13">Visit</button>
-            <iframe id="music-frame-13" data-src="https://www.dubai92.com/player/" frameborder="0"></iframe>
-        </div>
-<div class="grid-item" id="container-music-frame-14">
-            <button class="refresh-btn" data-frame="music-frame-14">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-14">Visit</button>
-            <iframe id="music-frame-14" data-src="https://www.city1016.ae/player/" frameborder="0"></iframe>
-        </div>
-<div class="grid-item" id="container-music-frame-15">
-            <button class="refresh-btn" data-frame="music-frame-15">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-15">Visit</button>
-            <iframe id="music-frame-15" data-src="https://www.virginradiodubai.com/listen/" frameborder="0"></iframe>
-        </div>
-<div class="grid-item" id="container-music-frame-16">
-            <button class="refresh-btn" data-frame="music-frame-16">Refresh</button>
-            <button class="visit-btn" data-frame="music-frame-16">Visit</button>
-            <iframe id="music-frame-16" data-src="https://mirchi.in/radio/dubai" frameborder="0"></iframe>
+        <div class="footer">
+            Powered by 
+            <a href="https://fb.com/atSUPERMAN" target="_blank">atSUPERMAN</a>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const urlSelect = document.getElementById('urlSelect');
+        const refreshButton = document.getElementById('refreshButton');
+        const visitButton = document.getElementById('visitButton');
+        const pageFrame = document.getElementById('pageFrame');
+
+        // Automatically load the first option on page load
+        window.addEventListener('load', () => {
+            const firstUrl = urlSelect.options[0].value; // Get the first option's URL
+            pageFrame.src = firstUrl;
+            urlSelect.value = firstUrl; // Set the select dropdown to the first option
+        });
+
+        // Update iframe when a new page is selected
+        urlSelect.addEventListener('change', () => {
+            const selectedUrl = urlSelect.value;
+            if (selectedUrl) {
+                pageFrame.classList.remove('loaded');
+                pageFrame.src = selectedUrl;
+            }
+        });
+
+        // Add loaded class for smooth scaling
+        pageFrame.addEventListener('load', () => {
+            pageFrame.classList.add('loaded');
+        });
+
+        // Refresh the iframe page
+        refreshButton.addEventListener('click', () => {
+            if (pageFrame.src) {
+                pageFrame.src = pageFrame.src;
+            }
+        });
+
+        // Open the selected page in a new tab
+        visitButton.addEventListener('click', () => {
+            const selectedUrl = urlSelect.value;
+            window.open(selectedUrl, '_blank');
+        });
+    </script>
 </body>
     </html>
-
-                
